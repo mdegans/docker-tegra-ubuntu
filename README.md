@@ -11,11 +11,3 @@ Please use the [l4t-base branch](https://github.com/mdegans/docker-tegra-ubuntu/
 
 - a Tegra board
 - Linux for Tegra with Docker running
-
-## Example usage of built image:
-
-
-
-## Building
-
-A build script is provided to 
