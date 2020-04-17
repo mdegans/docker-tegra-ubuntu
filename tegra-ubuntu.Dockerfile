@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-FROM ubuntu:bionic
+FROM nvcr.io/nvidia/l4t-base:r32.3.1
 
 # This determines what <SOC> gets filled in in the nvidia apt sources list:
 # valid choices: t210, t186, t194
