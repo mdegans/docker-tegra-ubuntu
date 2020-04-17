@@ -1,4 +1,4 @@
-# cuda Image for Tegra
+# Ubuntu Image for Tegra
 
 This image is intended to provide an alternative to the l4t-base image from Nvidia that lacks cuda inside the image, making it impossible to build `FROM`.
 
