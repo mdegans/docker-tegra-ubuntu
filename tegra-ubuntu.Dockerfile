@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-ARG JETPACK_VERSION=r32.4.2
+ARG JETPACK_VERSION=r32.3.1
 
 FROM nvcr.io/nvidia/l4t-base:${JETPACK_VERSION} as base
 
@@ -45,8 +45,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # valid choices: t210, t186, t194 
 ARG SOC="t210"
 
-RUN echo "deb https://repo.download.nvidia.com/jetson/common r32.4 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
-    && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32.4 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
+RUN echo "deb https://repo.download.nvidia.com/jetson/common r32 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
+    && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
     && apt-get update
 # the final apt-get update to test it works.
 
