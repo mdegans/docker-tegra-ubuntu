@@ -20,7 +20,7 @@ docker build \
 docker tag mdegans/l4t-base:t194 mdegans/l4t-base:xavier
 docker tag mdegans/l4t-base:t194 mdegans/l4t-base:$JETPACK_VERSION-xavier
 docker build \
-    --build-arg SOC="t186 \
+    --build-arg SOC="t186" \
     --build-arg JETPACK_VERSION=$JETPACK_VERSION \
     -f "tegra-ubuntu.Dockerfile" -t mdegans/l4t-base:t186 .
 docker tag mdegans/l4t-base:t186 mdegans/l4t-base:tx2
