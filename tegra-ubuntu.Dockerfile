@@ -20,7 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-FROM nvcr.io/nvidia/l4t-base:r32.3.1 as base
+ARG JETPACK_VERSION=r32.4.2
+
+FROM nvcr.io/nvidia/l4t-base:${JETPACK_VERSION} as base
 
 # because Nvidia has no keyserver for Tegra currently, we DL the whole BSP tarball, just for the apt key.
 ARG BSP_URI="https://developer.nvidia.com/embedded/dlc/r32-3-1_Release_v1.0/t210ref_release_aarch64/Tegra210_Linux_R32.3.1_aarch64.tbz2"
@@ -43,14 +45,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # valid choices: t210, t186, t194 
 ARG SOC="t210"
 
-RUN echo "deb https://repo.download.nvidia.com/jetson/common r32 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
-    && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
+RUN echo "deb https://repo.download.nvidia.com/jetson/common r32.4 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
+    && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32.4 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
     && apt-get update
 # the final apt-get update to test it works.
 
 # Finally, copy the working stuff to a fresh base,
 # just in case there are some files still around
-FROM nvcr.io/nvidia/l4t-base:r32.3.1
+FROM nvcr.io/nvidia/l4t-base:${JETPACK_VERSION}
 
 COPY --from=base /etc/apt/trusted.gpg.d/jetson-ota-public.asc /etc/apt/trusted.gpg.d/jetson-ota-public.asc
 COPY --from=base /etc/apt/sources.list.d/nvidia-l4t-apt-source.list /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
