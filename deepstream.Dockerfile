@@ -49,7 +49,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && tar --no-same-permissions -xjf bsp.tbz2 \
     && cp Linux_for_Tegra/nv_tegra/jetson-ota-public.key /etc/apt/trusted.gpg.d/jetson-ota-public.asc \
     && chmod 644 /etc/apt/trusted.gpg.d/jetson-ota-public.asc \
-    && rm * -rf
+    && rm * -rf \
+    && rm -rf /var/lib/apt/lists/*
 
 # This determines what <SOC> gets filled in in the nvidia apt sources list:
 # putting it here so there's a common layer for all boards and build_all.sh builds faster
@@ -58,4 +59,5 @@ ARG SOC="t210"
 
 RUN echo "deb https://repo.download.nvidia.com/jetson/common r32.4 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
     && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32.4 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
-    && apt-get update
+    && apt-get update \
+    && rm -rf /var/lib/apt/lists/*
