@@ -56,7 +56,4 @@ FROM nvcr.io/nvidia/l4t-base:${JETPACK_VERSION}
 
 COPY --from=base /etc/apt/trusted.gpg.d/jetson-ota-public.asc /etc/apt/trusted.gpg.d/jetson-ota-public.asc
 COPY --from=base /etc/apt/sources.list.d/nvidia-l4t-apt-source.list /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
-ENV SUDO_FORCE_REMOVE=yes
-RUN apt-get purge -y --autoremove sudo \
-    &&  for f in $(find / -perm 4000); do chmod -s "$f"; done;
-# sudo should not be in an image, among other suid binaries
+RUN for f in $(find / -perm 4000); do chmod -s "$f"; done;
