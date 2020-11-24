@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-ARG JETPACK_VERSION=r32.4.3
+ARG JETPACK_VERSION=r32.4.4
 
 FROM nvcr.io/nvidia/l4t-base:${JETPACK_VERSION} as base
 
@@ -31,8 +31,8 @@ ARG BSP_SHA512="13c4dd8e6b20c39c4139f43e4c5576be4cdafa18fb71ef29a9acfcea764af878
 WORKDIR /tmp
 # install apt key and configure apt sources
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        wget \
+    ca-certificates \
+    wget \
     && BSP_SHA512_ACTUAL="$(wget --https-only -nv --show-progress --progress=bar:force:noscroll -O- ${BSP_URI} | tee bsp.tbz2 | sha512sum -b | cut -d ' ' -f 1)" \
     && [ ${BSP_SHA512_ACTUAL} = ${BSP_SHA512} ] \
     && echo "Extracting bsp.tbz2" \

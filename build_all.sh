@@ -1,6 +1,6 @@
 # valid choices: t210, t186, t194
 
-readonly JETPACK_VERSION=r32.4.3
+readonly JETPACK_VERSION=r32.4.4
 
 set -ex
 
