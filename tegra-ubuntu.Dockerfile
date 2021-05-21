@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-ARG JETPACK_VERSION=r32.4.4
+ARG JETPACK_VERSION=r32.5.0
 ARG BASE_IMAGE=nvcr.io/nvidia/l4t-base:${JETPACK_VERSION}
 
 FROM ${BASE_IMAGE} as base
@@ -31,8 +31,8 @@ ADD --chown=root:root https://repo.download.nvidia.com/jetson/jetson-ota-public.
 RUN chmod 644 /etc/apt/trusted.gpg.d/jetson-ota-public.asc \
     && apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
-    && echo "deb https://repo.download.nvidia.com/jetson/common r32 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
-    && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
+    && echo "deb https://repo.download.nvidia.com/jetson/common r32.5 main" > /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
+    && echo "deb https://repo.download.nvidia.com/jetson/${SOC} r32.5 main" >> /etc/apt/sources.list.d/nvidia-l4t-apt-source.list \
     && apt-get update \
     && rm -rf /var/lib/apt/lists/*
 # the last two lines are just to test it works. Leaving the ca-certificates
